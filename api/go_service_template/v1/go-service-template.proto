@@ -1,0 +1,116 @@
+syntax = "proto3";
+package go_service_template.v1;
+
+option go_package = "github.com/nakiner/go-service-template/pkg/pb/go_service_template/v1";
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Go service template";
+    description: "starter template";
+    version: "1.0";
+  };
+ //host: "go-serv.hoolie.io";
+  consumes: "application/json";
+  produces: "application/json";
+  responses: {
+    key: "400";
+    value: {
+      description: "Bad Request";
+      schema: {
+        json_schema: {
+          ref: ".go_service_template.v1.ErrorResponse";
+        }
+      }
+    }
+  }
+  responses: {
+    key: "401";
+    value: {
+      description: "Unauthorized";
+      schema: {
+        json_schema: {
+          ref: ".go_service_template.v1.ErrorResponse";
+        }
+      }
+    }
+  }
+  responses: {
+    key: "403";
+    value: {
+      description: "Forbidden";
+      schema: {
+        json_schema: {
+          ref: ".go_service_template.v1.ErrorResponse";
+        }
+      }
+    }
+  }
+  responses: {
+    key: "404";
+    value: {
+      description: "Not Found";
+      schema: {
+        json_schema: {
+          ref: ".go_service_template.v1.ErrorResponse";
+        }
+      }
+    }
+  }
+  responses: {
+    key: "500";
+    value: {
+      description: "Internal Server Error";
+      schema: {
+        json_schema: {
+          ref: ".go_service_template.v1.ErrorResponse";
+        }
+      }
+    }
+  }
+  responses: {
+    key: "default";
+    value: {
+      description: "Unexpected Error";
+      schema: {
+        json_schema: {
+          ref: ".go_service_template.v1.ErrorResponse";
+        }
+      }
+    }
+  }
+};
+
+message ErrorResponse {
+  google.protobuf.Empty data = 1;
+  Error error = 2;
+}
+
+message Error {
+  int64 code = 1;
+  string message = 2;
+  google.protobuf.Struct details = 3;
+}
+
+service GoServiceTemplateServiceV1 {
+  rpc TestHandler(TestHandlerRequest) returns (TestHandlerResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/entity/test",
+      body: "*"
+    };
+  }
+}
+
+message TestHandlerRequest {
+
+}
+
+message TestHandlerResponse {
+
+}

@@ -1,0 +1,8 @@
+# automatic migrations:
+migrate/migrate*.go
+.idea
+vendor.pb
+vendor
+bin
+env/local.yaml
+/bin

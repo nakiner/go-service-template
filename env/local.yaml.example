@@ -1,0 +1,9 @@
+env:
+  - name: LOG_LEVEL
+    value: error
+  - name: ENV
+    value: local
+  - name: SERVICE_PORT_HTTP
+    value: "8080"
+  - name: SERVICE_PORT_GRPC
+    value: "8081"
