@@ -9,14 +9,17 @@ import (
 	"go.uber.org/zap"
 )
 
-// RequestLogger returns a logger handler..
-func RequestLogger() func(next http.Handler) http.Handler {
-	return middleware.RequestLogger(&LogFormatter{})
-}
-
 // LogEntry records the final log when a request completes.
 type LogEntry struct {
 	logger *zap.SugaredLogger
+}
+
+// LogFormatter initiates the beginning of a new LogEntry per request.
+type LogFormatter struct{}
+
+// RequestLogger returns a logger handler..
+func RequestLogger() func(next http.Handler) http.Handler {
+	return middleware.RequestLogger(&LogFormatter{})
 }
 
 func (l *LogEntry) Write(status, bytes int, header http.Header, elapsed time.Duration, extra interface{}) {
@@ -32,10 +35,6 @@ func (l *LogEntry) Panic(v interface{}, stack []byte) {
 		"stack", string(stack),
 		"panic", fmt.Sprintf("%+v", v),
 	)
-}
-
-// LogFormatter initiates the beginning of a new LogEntry per request.
-type LogFormatter struct {
 }
 
 func (l *LogFormatter) NewLogEntry(r *http.Request) middleware.LogEntry {

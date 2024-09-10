@@ -37,6 +37,7 @@ func fromEnv() Config {
 }
 
 func New() *App {
+	loadLocalValuesYaml()
 	appCfg := fromEnv()
 	logger.SetLevel(appCfg.LogLevel)
 	app := new(App)

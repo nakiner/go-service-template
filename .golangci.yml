@@ -3,23 +3,15 @@ run:
   deadline: 60s
   issues-exit-code: 1
   tests: true
-  skip-dirs:
-    - bin
-    - vendor
-    - var
-    - tmp
-  skip-files:
-    - \.pb\.go$
-    - \.pb\.gw\.go$
 
 output:
-  format: colored-line-number
+  formats: colored-line-number
   print-issued-lines: true
   print-linter-name: true
 
 linters-settings:
   govet:
-    check-shadowing: true
+    shadowing: true
   revive:
     min-confidence: 0
     rules:
@@ -51,6 +43,14 @@ linters:
 
 issues:
   exclude-use-default: false
+  exclude-dirs:
+    - bin
+    - vendor
+    - var
+    - tmp
+  exclude-files:
+    - \.pb\.go$
+    - \.pb\.gw\.go$
   exclude:
     # _ instead of err checks
     - G104

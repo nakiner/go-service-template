@@ -2,16 +2,13 @@ package server
 
 import (
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 	"gopkg.in/yaml.v2"
 )
-
-func init() {
-	loadLocalValuesYaml()
-}
 
 func loadLocalValuesYaml() {
 	var localFile string
@@ -35,7 +32,7 @@ func loadLocalValuesYaml() {
 }
 
 func loadEnvFromValuesFile(file string) error {
-	b, err := os.ReadFile(file)
+	b, err := os.ReadFile(filepath.Clean(file))
 	if err != nil {
 		return errors.Wrap(err, "read yaml file")
 	}
@@ -46,7 +43,7 @@ func loadEnvFromValuesFile(file string) error {
 	}
 
 	for _, v := range config.Env {
-		if err := os.Setenv(v.Name, v.Value); err != nil {
+		if err = os.Setenv(v.Name, v.Value); err != nil {
 			return errors.Wrapf(err, "set env %s='%s'", v.Name, v.Value)
 		}
 		appLogger.With(

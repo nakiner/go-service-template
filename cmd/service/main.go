@@ -5,11 +5,12 @@ import (
 
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/nakiner/go-service-template/internal/handler/go_service_template/v1"
-	"github.com/nakiner/go-service-template/internal/logger"
-	"github.com/nakiner/go-service-template/internal/server"
+	hndl "github.com/nakiner/go-service-template/internal/handler/go_service_template/v1"
 	pb "github.com/nakiner/go-service-template/pkg/pb/go_service_template/v1"
 	"google.golang.org/grpc"
+
+	"github.com/nakiner/go-service-template/internal/logger"
+	"github.com/nakiner/go-service-template/internal/server"
 )
 
 func main() {
@@ -22,7 +23,7 @@ func initApp(app *server.App) {
 	ctx := context.Background()
 	mux := runtime.NewServeMux()
 
-	handler := v1.NewService()
+	handler := hndl.NewService()
 
 	app.SetHandler(mux)
 	app.Use(middleware.Recoverer)
