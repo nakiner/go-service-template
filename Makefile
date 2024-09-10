@@ -5,39 +5,31 @@ ifneq (,$(wildcard env/local.yaml))
     RUN_ARGS=--config=env/local.yaml
 endif
 
-PROTOC_BIN=protoc
-
 PROTOC_GEN_GO_BIN=$(LOCAL_BIN)/protoc-gen-go
 $(PROTOC_GEN_GO_BIN):
-	GOBIN=$(LOCAL_BIN) go install github.com/golang/protobuf/protoc-gen-go
+	[ -f $(PROTOC_GEN_GO_BIN) ] || GOBIN=$(LOCAL_BIN) go install google.golang.org/protobuf/cmd/protoc-gen-go
 
 
 PROTOC_GEN_GO_GRPC_BIN=$(LOCAL_BIN)/protoc-gen-go-grpc
 $(PROTOC_GEN_GO_GRPC_BIN):
-	GOBIN=$(LOCAL_BIN) go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
+	[ -f $(PROTOC_GEN_GO_GRPC_BIN) ] || GOBIN=$(LOCAL_BIN) go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 
 PROTOC_GEN_GRPC_GATEWAY_BIN=$(LOCAL_BIN)/v2/protoc-gen-grpc-gateway
 $(PROTOC_GEN_GRPC_GATEWAY_BIN):
-	GOBIN=$(LOCAL_BIN) go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
+	[ -f $(PROTOC_GEN_GRPC_GATEWAY_BIN) ] || GOBIN=$(LOCAL_BIN) go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
 
 
 PROTOC_GEN_OPENAPI_BIN=$(LOCAL_BIN)/v2/protoc-gen-openapiv2
 $(PROTOC_GEN_OPENAPI_BIN):
-	GOBIN=$(LOCAL_BIN) go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+	[ -f $(PROTOC_GEN_OPENAPI_BIN) ] || GOBIN=$(LOCAL_BIN) go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 
 BUF_BIN=$(LOCAL_BIN)/buf
-$(BUF_BIN): $(PROTOC_GEN_BUF_BREAKING_BIN) $(PROTOC_GEN_BUF_LINT_BIN)
-	GOBIN=$(LOCAL_BIN) go install github.com/bufbuild/buf/cmd/buf
-
-PROTOC_GEN_BUF_BREAKING_BIN=$(LOCAL_BIN)/protoc-gen-buf-breaking
-$(PROTOC_GEN_BUF_BREAKING_BIN):
-	GOBIN=$(LOCAL_BIN) go install github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking
-
-PROTOC_GEN_BUF_LINT_BIN=$(LOCAL_BIN)/protoc-gen-buf-lint
-$(PROTOC_GEN_BUF_LINT_BIN):
-	GOBIN=$(LOCAL_BIN) go install github.com/bufbuild/buf/cmd/protoc-gen-buf-lint
+BUF_BIN_TAG=v1.40.1
+BUF_BIN_URL=https://github.com/bufbuild/buf/releases/download/$(BUF_BIN_TAG)/buf-$(shell uname -s)-$(shell uname -m).tar.gz
+$(BUF_BIN): $(LOCAL_BIN)
+	[ -f $(BUF_BIN) ] || curl -sSL $(BUF_BIN_URL) | tar -C $(LOCAL_BIN) --strip-components 2 -xz buf/bin/buf
 
 
 MODTOOLS_BIN=$(LOCAL_BIN)/modtools
@@ -55,7 +47,8 @@ $(MODTOOLS_BIN):
 
 .PHONY: generate
 generate: .protodeps .vendorpb
-	PATH=$(LOCAL_BIN):$(PATH) $(BUF_BIN) generate -v --path=api/go_service_template
+	PATH=$(LOCAL_BIN):$(PATH) $(BUF_BIN) generate --path=api/go_service_template
+	rm -rf vendor.pb
 
 .PHONY: run
 run:

@@ -1,0 +1,7 @@
+version: v2
+modules:
+  - path: api
+  - path: vendor.pb/github.com/googleapis/googleapis
+  - path: vendor.pb/github.com/grpc-ecosystem/grpc-gateway/v2
+lint:
+  disallow_comment_ignores: true
