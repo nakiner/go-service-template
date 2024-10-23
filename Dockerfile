@@ -1,5 +1,4 @@
-# Загрузка образа для Golang
-FROM golang:1.21 AS builder
+FROM golang:1.23 AS builder
 
 WORKDIR /go/src/app
 COPY . .

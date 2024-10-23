@@ -10,8 +10,8 @@ import (
 	pb "github.com/nakiner/go-service-template/pkg/pb/go_service_template/v1"
 	"google.golang.org/grpc"
 
-	"github.com/nakiner/go-service-template/internal/logger"
-	"github.com/nakiner/go-service-template/internal/server"
+	"github.com/nakiner/go-logger"
+	"github.com/nakiner/go-server"
 )
 
 func main() {
@@ -38,7 +38,6 @@ func initApp(app *server.App) {
 	)
 	app.SetServeMux(mux)
 	app.WithSwaggerUI(bindata.MustAsset("api/api.swagger.json"))
-	app.WithProfiler()
 
 	handler := hndl.NewService()
 
