@@ -10,6 +10,7 @@ import (
 	_ "github.com/googleapis/googleapis/google/example/endpointsapis/goapp"
 	_ "github.com/kannman/modtools"
 
+	_ "github.com/kevinburke/go-bindata/v4"
 	_ "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
 	_ "google.golang.org/protobuf/cmd/protoc-gen-go"
 

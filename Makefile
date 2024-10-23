@@ -36,8 +36,12 @@ MODTOOLS_BIN=$(LOCAL_BIN)/modtools
 $(MODTOOLS_BIN):
 	GOBIN=$(LOCAL_BIN) go install github.com/kannman/modtools
 
+GOBINDATA_BIN=$(LOCAL_BIN)/go-bindata
+$(GOBINDATA_BIN):
+	[ -f $(GOBINDATA_BIN) ] || GOBIN=$(LOCAL_BIN) go install github.com/kevinburke/go-bindata/v4/...@latest
 
-.protodeps: $(PROTOC_GEN_GO_BIN) $(PROTOC_GEN_GO_GRPC_BIN) $(PROTOC_GEN_GRPC_GATEWAY_BIN) $(PROTOC_GEN_OPENAPI_BIN) $(MODTOOLS_BIN) $(WRAPMUX_BIN) $(BUF_BIN)
+
+.protodeps: $(PROTOC_GEN_GO_BIN) $(PROTOC_GEN_GO_GRPC_BIN) $(PROTOC_GEN_GRPC_GATEWAY_BIN) $(PROTOC_GEN_OPENAPI_BIN) $(MODTOOLS_BIN) $(WRAPMUX_BIN) $(BUF_BIN) $(GOBINDATA_BIN)
 	$(info all proto deps installed)
 
 .PHONY: .vendorpb
@@ -49,6 +53,7 @@ $(MODTOOLS_BIN):
 generate: .protodeps .vendorpb
 	PATH=$(LOCAL_BIN):$(PATH) $(BUF_BIN) generate --path=api/go_service_template
 	rm -rf vendor.pb
+	$(GOBINDATA_BIN) -pkg bindata -o internal/pkg/bindata/swagger-json.go api/api.swagger.json
 
 .PHONY: run
 run:

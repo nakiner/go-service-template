@@ -1,6 +1,6 @@
 module github.com/nakiner/go-service-template
 
-go 1.23.1
+go 1.23
 
 require (
 	github.com/go-chi/chi/v5 v5.1.0
@@ -10,6 +10,8 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.22.0
 	github.com/kannman/modtools v0.2.1
 	github.com/kelseyhightower/envconfig v1.4.0
+	github.com/kevinburke/go-bindata/v4 v4.0.2
+	github.com/nakiner/swagger-ui-go v0.0.3
 	github.com/oklog/run v1.1.0
 	github.com/pkg/errors v0.9.1
 	go.uber.org/zap v1.27.0
@@ -61,6 +63,7 @@ require (
 	github.com/daixiang0/gci v0.13.5 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/denis-tingaikin/go-header v0.5.0 // indirect
+	github.com/elazarl/go-bindata-assetfs v1.0.1 // indirect
 	github.com/ettle/strcase v0.2.0 // indirect
 	github.com/fatih/color v1.17.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
