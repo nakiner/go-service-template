@@ -7,7 +7,7 @@ COPY . /app
 
 RUN make build && make modcache-clean
 
-FROM alpine
+FROM debian:bookworm-slim
 
 RUN apk add --no-cache ca-certificates
 
