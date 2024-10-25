@@ -9,7 +9,7 @@ RUN make build && make modcache-clean
 
 FROM debian:bookworm-slim
 
-RUN apk add --no-cache ca-certificates
+RUN apt-get update && apt-get install git curl ca-certificates -y
 
 COPY --from=builder /go/src/app/bin/service .
 
