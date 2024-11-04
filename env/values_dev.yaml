@@ -1,0 +1,28 @@
+resources:
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+replicas: 1
+
+service:
+  http:
+    port: 8080
+  httpDebug:
+    port: 8084
+  grpc:
+    port: 8082
+  external: false
+
+metrics:
+  enabled: true
+  port: 8084
+
+env:
+  - name: LOG_LEVEL
+    value: debug
+  - name: ENV
+    value: dev

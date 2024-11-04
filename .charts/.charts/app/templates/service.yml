@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    {{- if .Values.metrics.enabled -}}
+    prometheus.io/port: "http-dbg"
+    prometheus.io/scrape: "true"
+    {{- end -}}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.service.http.port }}
+      targetPort: http
+    - name: http-dbg
+      protocol: TCP
+      port: {{ .Values.service.httpDebug.port }}
+      targetPort: http-dbg
+    - name: grpc
+      protocol: TCP
+      port: {{ .Values.service.grpc.port }}
+      targetPort: grpc

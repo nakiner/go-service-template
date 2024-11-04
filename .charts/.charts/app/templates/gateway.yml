@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ .Release.Name }}-gw
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - {{ .Release.Name }}.{{ .Release.Namespace }}.lb.hoolie.io
+    - port:
+        number: 82
+        name: grpc
+        protocol: GRPC
+      hosts:
+        - {{ .Release.Name }}.{{ .Release.Namespace }}.lb.hoolie.io
+    - port:
+        number: 84
+        name: http-dbg
+        protocol: HTTP
+      hosts:
+        - {{ .Release.Name }}.{{ .Release.Namespace }}.lb.hoolie.io
