@@ -3,11 +3,6 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
-  annotations:
-    {{- if .Values.metrics.enabled -}}
-    prometheus.io/port: "http-dbg"
-    prometheus.io/scrape: "true"
-    {{- end -}}
   labels:
     app: {{ .Release.Name }}
 spec:

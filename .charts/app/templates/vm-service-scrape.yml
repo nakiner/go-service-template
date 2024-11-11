@@ -1,0 +1,16 @@
+{{- if .Values.metrics.enabled -}}
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  endpoints:
+    - port: http-dbg
+      interval: 30s
+      path: /metrics
+      scheme: http
+{{- end -}}

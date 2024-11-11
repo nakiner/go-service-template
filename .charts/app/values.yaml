@@ -21,3 +21,9 @@ service:
 metrics:
   enabled: false
   port: 8084
+
+ingress:
+  enabled: false
+  hostname: ""
+  type: internal
+  scheme: http

@@ -15,11 +15,16 @@ service:
     port: 8084
   grpc:
     port: 8082
-  external: false
 
 metrics:
   enabled: true
   port: 8084
+
+ingress:
+  enabled: true
+  hostname: "dev-go-service-template.hoolie.io"
+  type: internal
+  scheme: http
 
 env:
   - name: LOG_LEVEL
