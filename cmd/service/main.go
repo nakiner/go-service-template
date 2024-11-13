@@ -26,9 +26,12 @@ func initApp(app *server.App) {
 
 	app.HTTP().Use(middleware.Recoverer)
 	app.HTTP().Use(logger.RequestLogger())
+	app.HTTP().Use(server.WithHTTPTracing)
 	app.DebugHTTP().Use(middleware.Recoverer)
 	app.DebugHTTP().Use(logger.RequestLogger())
+	app.DebugHTTP().Use(server.WithHTTPTracing)
 	app.UseGrpcServerOptions(
+		server.WithGrpcTracing(),
 		grpc.ChainUnaryInterceptor(
 			server.WithUnaryServerRecovery(),
 			logger.UnaryServerInterceptorLogger(),
