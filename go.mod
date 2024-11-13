@@ -9,8 +9,8 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.23.0
 	github.com/kannman/modtools v0.2.1
 	github.com/kevinburke/go-bindata/v4 v4.0.2
-	github.com/nakiner/go-logger v0.0.4
-	github.com/nakiner/go-server v0.0.3
+	github.com/nakiner/go-logger v0.0.5
+	github.com/nakiner/go-server v0.0.4
 	google.golang.org/genproto/googleapis/api v0.0.0-20241104194629-dd2ea8efbc28
 	google.golang.org/grpc v1.68.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.5.1

@@ -31,3 +31,7 @@ env:
     value: debug
   - name: ENV
     value: dev
+  - name: SERVICE_NAME
+    value: "dev-go-service-template"
+  - name: OTEL_EXPORTER_OTLP_ENDPOINT
+    value: "tempo.monitoring.svc.cluster.local:4317"

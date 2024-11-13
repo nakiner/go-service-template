@@ -5,13 +5,12 @@ import (
 
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/nakiner/go-logger"
+	"github.com/nakiner/go-server"
 	hndl "github.com/nakiner/go-service-template/internal/handler/go_service_template/v1"
 	"github.com/nakiner/go-service-template/internal/pkg/bindata"
 	pb "github.com/nakiner/go-service-template/pkg/pb/go_service_template/v1"
 	"google.golang.org/grpc"
-
-	"github.com/nakiner/go-logger"
-	"github.com/nakiner/go-server"
 )
 
 func main() {
@@ -24,12 +23,12 @@ func initApp(app *server.App) {
 	ctx := context.Background()
 	mux := runtime.NewServeMux()
 
+	app.HTTP().Use(server.WithHTTPTracing)
 	app.HTTP().Use(middleware.Recoverer)
 	app.HTTP().Use(logger.RequestLogger())
-	app.HTTP().Use(server.WithHTTPTracing)
+	app.DebugHTTP().Use(server.WithHTTPTracing)
 	app.DebugHTTP().Use(middleware.Recoverer)
 	app.DebugHTTP().Use(logger.RequestLogger())
-	app.DebugHTTP().Use(server.WithHTTPTracing)
 	app.UseGrpcServerOptions(
 		server.WithGrpcTracing(),
 		grpc.ChainUnaryInterceptor(
