@@ -323,8 +323,8 @@ github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 h1:C3w9PqII01/Oq
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822/go.mod h1:+n7T8mK8HuQTcFwEeznm/DIxMOiR9yIdICNftLE1DvQ=
 github.com/nakabonne/nestif v0.3.1 h1:wm28nZjhQY5HyYPx+weN3Q65k6ilSBxDb8v5S81B81U=
 github.com/nakabonne/nestif v0.3.1/go.mod h1:9EtoZochLn5iUprVDmDjqGKPofoUEBL8U4Ngq6aY7OE=
-github.com/nakiner/go-logger v0.0.3 h1:VHbc8Y68h53pwaBADeFoAqETnbOGP9gKHFppime38Fc=
-github.com/nakiner/go-logger v0.0.3/go.mod h1:t3J8dInfh2RyW9M+8Sk+GkL7fPX5YGgwW9ZUFX6Z/6U=
+github.com/nakiner/go-logger v0.0.4 h1:PB5DAfsh7GPmG5CgqsV7JJYuu0VJVgsBheZ9XxpAjNk=
+github.com/nakiner/go-logger v0.0.4/go.mod h1:ykEoLzYymMmrN1enpupqr1btsK/3/aErMPKp92ULpzE=
 github.com/nakiner/go-server v0.0.3 h1:Cw5Lcf3A3wO5wdEVdGInRLOA3RGoGfdMZbBCoVocHZk=
 github.com/nakiner/go-server v0.0.3/go.mod h1:3Lc3wHXcVBkGDAwHBkT6cF4nhNVfIrqbynu5E00ghuA=
 github.com/nakiner/swagger-ui-go v0.0.3 h1:e1N8i1U3K0rc3AK8n0eJVKl8Pe3BptMOkC8S9K0xHl4=
