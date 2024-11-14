@@ -325,8 +325,8 @@ github.com/nakabonne/nestif v0.3.1 h1:wm28nZjhQY5HyYPx+weN3Q65k6ilSBxDb8v5S81B81
 github.com/nakabonne/nestif v0.3.1/go.mod h1:9EtoZochLn5iUprVDmDjqGKPofoUEBL8U4Ngq6aY7OE=
 github.com/nakiner/go-logger v0.0.5 h1:/+255ln/qpnq9izKVAuFiH0Kg/1ZXQ3r4jiE+MB1HZw=
 github.com/nakiner/go-logger v0.0.5/go.mod h1:ykEoLzYymMmrN1enpupqr1btsK/3/aErMPKp92ULpzE=
-github.com/nakiner/go-server v0.0.4 h1:xChftlKk7Nvnr+VIdhDl3bGGvzR8o8250iGtevlWMTg=
-github.com/nakiner/go-server v0.0.4/go.mod h1:3Lc3wHXcVBkGDAwHBkT6cF4nhNVfIrqbynu5E00ghuA=
+github.com/nakiner/go-server v0.0.5 h1:x/0I+K04dDEyJ7t1mWJZm5vnIdmGO6ln78TghL7ljLo=
+github.com/nakiner/go-server v0.0.5/go.mod h1:qG5m7AUJxTOQub5+S57C2sLFFOwNFGjydrhnRR2pfG0=
 github.com/nakiner/swagger-ui-go v0.0.3 h1:e1N8i1U3K0rc3AK8n0eJVKl8Pe3BptMOkC8S9K0xHl4=
 github.com/nakiner/swagger-ui-go v0.0.3/go.mod h1:PiNhWRhhv7aJzVeQiQaLJ6OaRR1E0WQHTTmnKtO+suw=
 github.com/nishanths/exhaustive v0.12.0 h1:vIY9sALmw6T/yxiASewa4TQcFsVYZQQRUQJhKRf3Swg=
@@ -512,8 +512,8 @@ go.opentelemetry.io/otel/trace v1.32.0 h1:WIC9mYrXf8TmY/EXuULKc8hR17vE+Hjv2cssQD
 go.opentelemetry.io/otel/trace v1.32.0/go.mod h1:+i4rkvCraA+tG6AzwloGaCtkx53Fa+L+V8e9a7YvhT8=
 go.opentelemetry.io/proto/otlp v1.3.1 h1:TrMUixzpM0yuc/znrFTP9MMRh8trP93mkCiDVeXrui0=
 go.opentelemetry.io/proto/otlp v1.3.1/go.mod h1:0X1WI4de4ZsLrrJNLAQbFeLCm3T7yBkR0XqQ7niQU+8=
-go.uber.org/automaxprocs v1.5.3 h1:kWazyxZUrS3Gs4qUpbwo5kEIMGe/DAvi5Z4tl2NW4j8=
-go.uber.org/automaxprocs v1.5.3/go.mod h1:eRbA25aqJrxAbsLO0xy5jVwPt7FQnRgjW+efnwa1WM0=
+go.uber.org/automaxprocs v1.6.0 h1:O3y2/QNTOdbF+e/dpXNNW7Rx2hZ4sTIPyybbxyNqTUs=
+go.uber.org/automaxprocs v1.6.0/go.mod h1:ifeIMSnPZuznNm6jmdzmU3/bfk01Fe2fotchwEFJ8r8=
 go.uber.org/goleak v1.3.0 h1:2K3zAYmnTNqV73imy9J1T3WC+gmCePx2hEGkimedGto=
 go.uber.org/goleak v1.3.0/go.mod h1:CoHD4mav9JJNrW/WLlf7HGZPjdw8EucARQHekz1X6bE=
 go.uber.org/multierr v1.11.0 h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=

@@ -10,7 +10,7 @@ require (
 	github.com/kannman/modtools v0.2.1
 	github.com/kevinburke/go-bindata/v4 v4.0.2
 	github.com/nakiner/go-logger v0.0.5
-	github.com/nakiner/go-server v0.0.4
+	github.com/nakiner/go-server v0.0.5
 	google.golang.org/genproto/googleapis/api v0.0.0-20241104194629-dd2ea8efbc28
 	google.golang.org/grpc v1.68.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.5.1
@@ -209,7 +209,7 @@ require (
 	go.opentelemetry.io/otel/sdk v1.32.0 // indirect
 	go.opentelemetry.io/otel/trace v1.32.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.3.1 // indirect
-	go.uber.org/automaxprocs v1.5.3 // indirect
+	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
 	golang.org/x/crypto v0.28.0 // indirect
