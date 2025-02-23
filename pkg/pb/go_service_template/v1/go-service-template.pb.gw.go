@@ -10,6 +10,7 @@ package v1
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,37 +25,38 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_GoServiceTemplateServiceV1_TestHandler_0(ctx context.Context, marshaler runtime.Marshaler, client GoServiceTemplateServiceV1Client, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TestHandlerRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq TestHandlerRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.TestHandler(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_GoServiceTemplateServiceV1_TestHandler_0(ctx context.Context, marshaler runtime.Marshaler, server GoServiceTemplateServiceV1Server, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TestHandlerRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq TestHandlerRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.TestHandler(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterGoServiceTemplateServiceV1HandlerServer registers the http handlers for service GoServiceTemplateServiceV1 to "mux".
@@ -63,16 +65,13 @@ func local_request_GoServiceTemplateServiceV1_TestHandler_0(ctx context.Context,
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterGoServiceTemplateServiceV1HandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterGoServiceTemplateServiceV1HandlerServer(ctx context.Context, mux *runtime.ServeMux, server GoServiceTemplateServiceV1Server) error {
-
-	mux.Handle("POST", pattern_GoServiceTemplateServiceV1_TestHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GoServiceTemplateServiceV1_TestHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/go_service_template.v1.GoServiceTemplateServiceV1/TestHandler", runtime.WithHTTPPathPattern("/api/v1/entity/test"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go_service_template.v1.GoServiceTemplateServiceV1/TestHandler", runtime.WithHTTPPathPattern("/api/v1/entity/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -84,9 +83,7 @@ func RegisterGoServiceTemplateServiceV1HandlerServer(ctx context.Context, mux *r
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GoServiceTemplateServiceV1_TestHandler_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -113,7 +110,6 @@ func RegisterGoServiceTemplateServiceV1HandlerFromEndpoint(ctx context.Context, 
 			}
 		}()
 	}()
-
 	return RegisterGoServiceTemplateServiceV1Handler(ctx, mux, conn)
 }
 
@@ -129,14 +125,11 @@ func RegisterGoServiceTemplateServiceV1Handler(ctx context.Context, mux *runtime
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "GoServiceTemplateServiceV1Client" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterGoServiceTemplateServiceV1HandlerClient(ctx context.Context, mux *runtime.ServeMux, client GoServiceTemplateServiceV1Client) error {
-
-	mux.Handle("POST", pattern_GoServiceTemplateServiceV1_TestHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_GoServiceTemplateServiceV1_TestHandler_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/go_service_template.v1.GoServiceTemplateServiceV1/TestHandler", runtime.WithHTTPPathPattern("/api/v1/entity/test"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go_service_template.v1.GoServiceTemplateServiceV1/TestHandler", runtime.WithHTTPPathPattern("/api/v1/entity/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -147,11 +140,8 @@ func RegisterGoServiceTemplateServiceV1HandlerClient(ctx context.Context, mux *r
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_GoServiceTemplateServiceV1_TestHandler_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 

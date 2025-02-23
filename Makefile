@@ -26,7 +26,7 @@ $(PROTOC_GEN_OPENAPI_BIN):
 
 
 BUF_BIN=$(LOCAL_BIN)/buf
-BUF_BIN_TAG=v1.40.1
+BUF_BIN_TAG=v1.50.0
 BUF_BIN_URL=https://github.com/bufbuild/buf/releases/download/$(BUF_BIN_TAG)/buf-$(shell uname -s)-$(shell uname -m).tar.gz
 $(BUF_BIN): $(LOCAL_BIN)
 	[ -f $(BUF_BIN) ] || curl -sSL $(BUF_BIN_URL) | tar -C $(LOCAL_BIN) --strip-components 2 -xz buf/bin/buf
